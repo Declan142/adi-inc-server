@@ -10,6 +10,19 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// Root route
+app.get('/', (req, res) => {
+    res.json({ 
+        status: 'ok', 
+        message: 'Adi Inc Chat Server is running!',
+        endpoints: {
+            health: '/api/health',
+            messages: '/api/messages',
+            chat: 'POST /api/chat'
+        }
+    });
+});
+
 // Store messages
 const MESSAGES_FILE = path.join(__dirname, 'messages.json');
 
